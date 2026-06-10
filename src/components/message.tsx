@@ -1,8 +1,6 @@
-import { faker } from "@faker-js/faker";
 
-const Message = ({ text }) => {
 
-    const name = faker.person.fullName();
+const Message = ({ text, name }) => {
 
     return (
         <p className="message">

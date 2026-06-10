@@ -1,6 +1,9 @@
 import {useState} from 'react';
 import Message from './components/Message';
 import './App.css';
+import { faker } from "@faker-js/faker";
+
+
 
 const App = () => {
     //
@@ -31,22 +34,30 @@ const App = () => {
         </p>
 
         {
-            messages.map(
-                (text, index) => <Message key={index} text={text} />
-                )
+           messages.map(
+            (message, index) =>
+            <Message
+            key={index}
+            text={message.text}
+            name={message.name}
+        />
+)
         }
 
         <form onSubmit={(event) => {
             event.preventDefault();
 
             // determine what the new message is
-            const new_message = incomingText;
+            const new_message = {
+                text: incomingText,
+                name: faker.person.fullName()
+                                };
 
             // add the new message to the message state
             setMessages([...messages, new_message]);
 
             // note: this is not best practice in react but it works for now
-            //@ts-expect-error
+            
             // document.getElementById('incoming_text').value = '';
             setIncomingText ('');
         }}>
